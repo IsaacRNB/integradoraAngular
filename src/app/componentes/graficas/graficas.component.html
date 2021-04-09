@@ -1,0 +1,84 @@
+<app-navbar></app-navbar>>
+
+<div class="background text-center">
+
+  <div class="card text-white mb-3">
+    <div class="card-section border rounded p-3">
+      <div class="card-header-first rounded pb-5">
+        <div class="card-header-title text-white pt-3"> <img src="assets/grafica.png" width="100px"></div>
+      </div>
+
+
+      <div class="card-body shadow">
+        <div class="row">
+          <div class="col">
+            <div class="container text-center mt-5">
+
+              <img src="assets/croquetas.png" style="cursor: pointer;" width="200px" height="200px" (click)="mostrarModalInfo(content)">
+
+
+            </div>
+            
+          </div>
+
+          <div class="vertical-line bg-danger" style="height: 260px;"> </div>
+
+
+          <div class="col">
+            <div class="container text-center mt-5">
+
+              <img src="assets/agua.png" style="cursor: pointer;" width="200px">
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-content">
+    <div class="modal-header btn-danger shadow">
+      <h5 class="modal-title">Opciones</h5>
+    </div>
+    <div class="modal-body">
+      <div class="card text-white mb-3">
+        <div class="card-body shadow">
+          <div class="row">
+            <div class="col">
+              <h3 style="color: red;">Semana</h3>
+
+              <br>
+              <div class="container text-center mt-5">
+                <div class="card border-danger shadow">
+                  <div class="card-body" style="color: red;">
+                    La temperatura del agua es:
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+              
+              <div class="col">
+
+              <br>
+              <div class="container text-center mt-5" >
+                <div class="card">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer shadow">
+      <img class="btn" src="assets/back.png" style="width: 75px;" (click)="modal.close()">
+    </div>
+  </div>
+</ng-template>
