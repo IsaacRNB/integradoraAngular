@@ -16,21 +16,10 @@
                   class="form-control mb-2 shadow"
                   placeholder="Nombre del usuario"
                   formControlName="username"
+               
+
                 />
-                <input
-                  type="email"
-                  class="form-control mb-2 shadow"
-                  placeholder="Correo electronico"
-                  formControlName="email"
-                  
-                />
-                <input
-                  type="text"
-                  class="form-control mb-2 shadow"
-                  placeholder="Nombre de la mascota"
-                  formControlName="usernameMascota"
-                  
-                />
+
                 <input
                   type="password"
                   class="form-control mb-2 shadow"
@@ -52,6 +41,14 @@
               <div class="col" style="color: black;">
               <h3 style="color: red;">Foto de perfil</h3>
               <br>
+
+              <input
+              type="text"
+              class="form-control mb-2 shadow"
+              placeholder="Nombre de la mascota"
+              formControlName="usernameMascota"
+              
+              />
               <div class="container mt-4">
                 <h5>Imagen actual</h5>
                 <img src="assets/291-2916631_perros-animados-png-sin-fondo-dog-thank-you-gifs-removebg-preview.png" style="margin-left: 50px;" height="100pxs">
@@ -59,7 +56,7 @@
               </div>
               <div class="container mt-5">
                 <h5>Imagen nueva</h5>
-                <button type="file">Seleccionar archivo</button>
+                <input type="file">
               </div>
             </div>
             <button class="btn btn-danger" style="height: 50px; margin-top: 450px;">Guardar</button>
@@ -69,4 +66,13 @@
         <div class="card-footer bg-danger">
            
         </div>
+
+        
+        <!--<       PREVISUALIZAR IMAGEN
+        <div>
+        <input type="file" (change)="capturarFile($event)">
+        </div>
+        div *ngIf="previsualizacion">
+        <img [src]="previsualizacion" alt="" width="80px" height="80px">
+        </div>-->
 </div>

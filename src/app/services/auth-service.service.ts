@@ -62,4 +62,10 @@ export class AuthServiceService
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
+
+    
+  usuarioUpdate(user:User):Observable<any>
+  {
+    return this.http.post(`${this.apiURL}usuarios/actualizar/update`, user)
+  }
 }

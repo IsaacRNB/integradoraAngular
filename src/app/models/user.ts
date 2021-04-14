@@ -4,9 +4,9 @@ export interface User
     password:string;
 }
 
-export interface TokenPaylaod
- {
-    id: number
-    usuario: string
-    password: string
+export class User2 {
+    id:number;
+    usuario:string;
+    token:string;
+    password:string;
 }

@@ -17,6 +17,8 @@ import { GraficasComponent } from './componentes/graficas/graficas.component';
 import { NgbModule, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PrestasComponent } from './componentes/prestas/prestas.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthGuard } from './componentes/guards/auth.guard';
+import { AuthInterceptorService } from './componentes/interceptors/auth-interceptor.service';
 
 
 @NgModule({
@@ -41,7 +43,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
     FormsModule,
     NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard,
+    {provide: HTTP_INTERCEPTORS, 
+    useClass: AuthInterceptorService,
+    multi:true}],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
