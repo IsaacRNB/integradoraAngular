@@ -25,7 +25,7 @@
         </li>
   
         <li class="nav-item ">
-          <a class="nav-link text-white" [routerLink]="['/login']">Cerrar sesion</a>
+          <a class="nav-link text-white"  (click)="auth.logout()">Cerrar sesion</a>
         </li>
       </ul>
     </form>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -15,6 +16,7 @@ import { AguaComponent } from './componentes/agua/agua.component';
 import { GraficasComponent } from './componentes/graficas/graficas.component';
 import { NgbModule, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PrestasComponent } from './componentes/prestas/prestas.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 
 @NgModule({
@@ -34,6 +36,9 @@ import { PrestasComponent } from './componentes/prestas/prestas.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
     NgbModule
   ],
   providers: [],
