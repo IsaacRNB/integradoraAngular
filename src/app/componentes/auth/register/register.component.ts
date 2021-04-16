@@ -29,13 +29,16 @@ export class RegisterComponent implements OnInit {
       this.authService.register(this.user).subscribe(data =>{
         timeMessage('Registrando..', 1500).then(() => {
           successDialog('Registro Completado');
-          this.router.navigate(['/login']);
+          this.authService.login(this.user).subscribe()
+          this.router.navigate(['/registerDog']);
         })
       }, error => {
         errorMessage('Ha ocurrido un error')
       })
+      
     }
   }
+
 
   createForm(): void {
     this.registerForm = this.fb.group({

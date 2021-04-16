@@ -3,67 +3,83 @@
 <div class="background">
     <div class="card text-white mb-3" style="width: 800px; height: 600px;">
         <div class="card-header bg-danger">
-            Ajustes de usuario
+            Ajustes
         </div>
         <div class="card-body shadow">
           <div class="row">
+            
             <div class="col">
-              <h3 style="color: red;">General</h3>
+              <h3 style="color: red;">Usuario</h3>
               <br>
               <div class="container text-center mt-4">
+                <form
+                    class="form-signin animated fadeIn"
+                    autocomplete="on"
+                    #f1="ngForm" (ngSubmit)='actualizarUsuario(f1)'
+                    >
                 <input
                   type="text"
                   class="form-control mb-2 shadow"
                   placeholder="Nombre del usuario"
-                  formControlName="username"
-               
+                  #nombreUsuario="ngModel"
+                  name="nombreUsuario"
+                  [(ngModel)] = "usuario.usuario"
 
-                />
-
-                <input
-                  type="password"
-                  class="form-control mb-2 shadow"
-                  placeholder="Contraseña actual"
-                  formControlName="password"
-                  
                 />
                 <input
                   type="password"
                   class="form-control mb-5 shadow"
                   placeholder="Nueva contraseña"
-                  formControlName="newpassword"
-                  
+                  #password="ngModel"
+                  name="password"
+                  [(ngModel)] = "usuario.password"
                 />
+                <button class="btn btn-danger" style="width: 100%; margin-top: 50px; margin-bottom: 60px;" 
+                    >Guardar</button>
+                </form>
               </div>
+              
 
             </div>
-              
+
+
               <div class="col" style="color: black;">
-              <h3 style="color: red;">Foto de perfil</h3>
-              <br>
-
-              <input
-              type="text"
-              class="form-control mb-2 shadow"
-              placeholder="Nombre de la mascota"
-              formControlName="usernameMascota"
-              
-              />
-              <div class="container mt-4">
-                <h5>Imagen actual</h5>
-                <img src="assets/291-2916631_perros-animados-png-sin-fondo-dog-thank-you-gifs-removebg-preview.png" style="margin-left: 50px;" height="100pxs">
-
-              </div>
-              <div class="container mt-5">
-                <h5>Imagen nueva</h5>
-                <input type="file">
-              </div>
-            </div>
-            <button class="btn btn-danger" style="height: 50px; margin-top: 450px;">Guardar</button>
-
+                <h3 style="color: red;">Registrar Perro</h3>
+                <br>
+                  <div class="container mt-4">
+                  
+                    <form
+                    class="form-signin animated fadeIn"
+                    autocomplete="on"
+                    #f2="ngForm" (ngSubmit)='cargarImagen(f2)'
+                    >
+                  <input
+                  type="text"
+                  class="form-control mb-2 shadow"
+                  placeholder="Nombre de la mascota"
+                  #nombrePerro="ngModel"
+                  name="nombrePerro"
+                  [(ngModel)] = "perro.nombre"
+  
+                  />
+  
+                  <div class="container mt-4">
+                    <h5>Imagen actual</h5>
+                    <img src="assets/291-2916631_perros-animados-png-sin-fondo-dog-thank-you-gifs-removebg-preview.png" height="100px">
+    
+                  </div>
+                  <div class="container mt-5">
+                    <h5>Imagen nueva</h5>
+                    <input type="file" id="fileIn" (change)="setFile($event)">
+                    <button class="btn btn-danger" style="width: 100%; margin-top: 50px; margin-bottom: 60px;" 
+                    >Guardar</button>
+                  </div>
+               </form>
+                </div>  
+          </div>
           </div>
         </div>
-        <div class="card-footer bg-danger">
+        <div class="card-footer bg-danger"> 
            
         </div>
 

@@ -9,10 +9,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegisterComponent } from './componentes/auth/register/register.component';
 import { HomeComponent } from './componentes/main/home/home.component';
+import { RegisterDogComponent } from './componentes/register-dog/register-dog.component';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
+  {path:'registerDog', component: RegisterDogComponent},
   {path:'croquetas', component: CroquetasComponent, canActivate:[AuthGuard]},
   {path:'agua', component: AguaComponent, canActivate:[AuthGuard]},
   {path:'prestas', component: PrestasComponent, canActivate:[AuthGuard]},

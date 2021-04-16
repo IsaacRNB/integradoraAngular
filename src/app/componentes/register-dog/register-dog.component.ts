@@ -1,33 +1,33 @@
-import { UsuarioService } from './../../services/usuario.service';
-import { User } from './../../models/user';
-import { Perro } from 'src/app/models/Perro';
-import { AuthServiceService } from './../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Perro } from 'src/app/models/Perro';
+import { User } from 'src/app/models/user';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-prestas',
-  templateUrl: './prestas.component.html',
-  styleUrls: ['./prestas.component.css']
+  selector: 'app-register-dog',
+  templateUrl: './register-dog.component.html',
+  styleUrls: ['./register-dog.component.css']
 })
-export class PrestasComponent implements OnInit {
+export class RegisterDogComponent implements OnInit {
+
 
   perro = new Perro()
   usuario = new User()
 
   selectedFile: File = null;
-
+  
   constructor(private fb: FormBuilder,
-             private authService: AuthServiceService,
-              private usuarioService: UsuarioService,
-              private router:Router) {
+    private authService: AuthServiceService,
+     private usuarioService: UsuarioService,
+     private router:Router) {
 
-  }
+}
 
   ngOnInit(): void {
-
   }
 
   cargarImagen(ngform: NgForm): void {
@@ -77,34 +77,6 @@ export class PrestasComponent implements OnInit {
       console.log(this.selectedFile)
     }
   }
+  
 
-  actualizarUsuario(ngform: NgForm) {
-    const data: User =
-    {
-      "usuario": ngform.control.value.nombreUsuario,
-      "password": ngform.control.value.password
-    }
-
-    if (data.usuario != null && data.password != null) {
-      this.usuarioService.actualizarUsuario(data).subscribe((data: any) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Usuario actualizado exitosamente',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        ngform.resetForm();
-      })
-    }
-    else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Necesitas rellenar ambos campos!'
-      })
-      ngform.resetForm();
-    }
-  }
 }
-
-

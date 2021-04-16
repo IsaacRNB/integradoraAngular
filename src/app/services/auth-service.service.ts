@@ -1,3 +1,4 @@
+import { Perro } from 'src/app/models/Perro';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from 'src/app/models/user';
 import { Injectable } from '@angular/core';
@@ -33,7 +34,6 @@ export class AuthServiceService
             if(data.token){
                 this.guardarToken(data.token)
             }
-
             return data
         })
     )
@@ -62,10 +62,11 @@ export class AuthServiceService
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
-
-    
-  usuarioUpdate(user:User):Observable<any>
-  {
-    return this.http.post(`${this.apiURL}usuarios/actualizar/update`, user)
+  
+  public registrarPerro(data,nombre){
+    return this.http.post(`${this.apiURL}perros/registrarperrito?nombre=${nombre}`, data); // POST  
   }
+      
+ 
+
 }

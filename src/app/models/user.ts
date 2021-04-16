@@ -1,11 +1,12 @@
-export interface User 
+export class User 
 {
     usuario:string;
     password:string;
+
 }
 
-export class User2 {
-    id:number;
+export class User2
+ {
     usuario:string;
     token:string;
     password:string;

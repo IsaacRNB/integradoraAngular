@@ -19,6 +19,7 @@ import { PrestasComponent } from './componentes/prestas/prestas.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuard } from './componentes/guards/auth.guard';
 import { AuthInterceptorService } from './componentes/interceptors/auth-interceptor.service';
+import { RegisterDogComponent } from './componentes/register-dog/register-dog.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AuthInterceptorService } from './componentes/interceptors/auth-intercep
     CroquetasComponent,
     AguaComponent,
     GraficasComponent,
-    PrestasComponent
+    PrestasComponent,
+    RegisterDogComponent
   ],
   imports: [
     BrowserModule,

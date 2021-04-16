@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
       });
     }else{
       this.setUser();
-      console.log(this.user)
       this.authService.login(this.user).subscribe((data:any) => {
         timeMessage('Iniciando...', 1500).then(() => {
           successDialog('Iniciado').then(() => {
