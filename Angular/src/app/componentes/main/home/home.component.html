@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+
+<div class="container text-center" style="margin-top: 60px">
+   <h1 class="text-white" >Bienvenido a tu panel de dispensador de croquetas</h1>
+</div>
+
+<div *ngFor="let perro of perros;">
+   <p class="centrado"> 
+      <img  [innerHTML]="perro.foto" width="800px">
+   </p>
+   <div class="container text-center text-white" style="margin-bottom: 100px;">
+      <h1 >Arriba encontraras las opciones</h1>
+      <h1 >para controlar el  dispensador de <h1 [innerHTML]="perro.nombre"></h1> </h1>
+   </div>
+   
+</div>
