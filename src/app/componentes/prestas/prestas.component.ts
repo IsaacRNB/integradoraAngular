@@ -1,3 +1,4 @@
+import { PerroService } from './../../services/perro.service';
 import { UsuarioService } from './../../services/usuario.service';
 import { User } from './../../models/user';
 import { Perro } from 'src/app/models/Perro';
@@ -17,10 +18,15 @@ export class PrestasComponent implements OnInit {
   perro = new Perro()
   usuario = new User()
 
+  idupdate = 18
+
+  perro1: Perro[] = [];
+
+
   selectedFile: File = null;
 
   constructor(private fb: FormBuilder,
-             private authService: AuthServiceService,
+             private perroService: PerroService,
               private usuarioService: UsuarioService,
               private router:Router) {
 
@@ -32,7 +38,7 @@ export class PrestasComponent implements OnInit {
 
   cargarImagen(ngform: NgForm): void {
     const data: Perro = {
-      "nombre": ngform.control.value.nombrePerro
+      "nombre": ngform.control.value.nombrePerro,
     }
     const formData = new FormData();
     if (this.selectedFile) {
@@ -41,14 +47,13 @@ export class PrestasComponent implements OnInit {
       console.log(data)
   
       if (data.nombre != null) {
-        this.authService.registrarPerro(formData, data.nombre).subscribe(data => {
+        this.perroService.actualizarPerro(formData, data.nombre).subscribe(data => {
           Swal.fire({
             icon: 'success',
             title: 'Perro actualizado exitosamente',
             showConfirmButton: false,
             timer: 1500
           })
-          this.router.navigate(['/home']);
   
           ngform.resetForm();
         }, error => {

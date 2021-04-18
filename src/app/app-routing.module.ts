@@ -1,3 +1,4 @@
+import { authPages } from './componentes/guards/authPages.guard';
 import { AuthGuard } from './componentes/guards/auth.guard';
 import { PrestasComponent } from './componentes/prestas/prestas.component';
 import { GraficasComponent } from './componentes/graficas/graficas.component';
@@ -15,12 +16,12 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'registerDog', component: RegisterDogComponent},
-  {path:'croquetas', component: CroquetasComponent, canActivate:[AuthGuard]},
-  {path:'agua', component: AguaComponent, canActivate:[AuthGuard]},
-  {path:'prestas', component: PrestasComponent, canActivate:[AuthGuard]},
-  {path:'graficas', component: GraficasComponent, canActivate:[AuthGuard]},
+  {path:'croquetas', component: CroquetasComponent, canActivate:[AuthGuard, authPages]},
+  {path:'agua', component: AguaComponent, canActivate:[AuthGuard, authPages]},
+  {path:'prestas', component: PrestasComponent, canActivate:[AuthGuard, authPages]},
+  {path:'graficas', component: GraficasComponent, canActivate:[AuthGuard, authPages]},
   {path:'', redirectTo:'/login', pathMatch:'full'},
-  {path:'home', component: HomeComponent, canActivate:[AuthGuard]},
+  {path:'home', component: HomeComponent, canActivate:[AuthGuard, authPages]},
   {path:'**', component: ErrorComponent}
 ];
 

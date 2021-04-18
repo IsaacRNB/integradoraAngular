@@ -1,4 +1,3 @@
-import { Perro } from 'src/app/models/Perro';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from 'src/app/models/user';
 import { Injectable } from '@angular/core';
@@ -13,60 +12,73 @@ import { Token } from '../models/token';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService 
-
+export class AuthServiceService
 {
   apiURL = environment.apiURL;
   token: string;
+  usuario;
   jwtHelper: JwtHelperService = new JwtHelperService();
-  
- 
 
-  constructor(private http: HttpClient, private router:Router) {}
+  constructor(private http: HttpClient, private router:Router)
+  {}
 
-  login(user: User): Observable<any> 
+  login(user: User): Observable<any>
   {
     let url = `${this.apiURL}login`;
-    const base = this.http.post(url, user)
-
+    const base = this.http.post(url, user);
     const request = base.pipe(
-        map((data: Token) => {
+        map((data: Token) =>
+        {
             if(data.token){
-                this.guardarToken(data.token)
+                this.guardarToken(data.token);
             }
-            return data
+            return data;
         })
     )
-
-    return request
+    return request;
   }
 
-  register(user: User): Observable<any> 
+  register(user: User): Observable<any>
   {
-    console.log("si entra")
     return this.http.post(`${this.apiURL}registrar`, user);
   }
 
-  private guardarToken(token: string): void {
+  private guardarToken(token: string): void
+  {
     localStorage.setItem('token', token);
     this.token = token;
   }
-  public logout(): void{
-        
-    this.token = ""
-    window.localStorage.removeItem('token')
-    this.router.navigate(['/login']);
-    
-  }
-  public isAuthenticated(): boolean {
+
+  public isAuthenticated(): boolean
+  {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
-  
-  public registrarPerro(data,nombre){
-    return this.http.post(`${this.apiURL}perros/registrarperrito?nombre=${nombre}`, data); // POST  
+
+  public verificarDog(id)
+  {
+    return this.http.get(`${this.apiURL}usuarios/perros`, id);
   }
-      
- 
+
+  public verificarAuth(): boolean
+  {
+    //console.log("Si entra");
+    if(sessionStorage.getItem('id'))
+    {
+      if(sessionStorage.getItem('id').length > 1)
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
+
+  public logout(): void
+  {
+    this.token = "";
+    window.localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 
 }

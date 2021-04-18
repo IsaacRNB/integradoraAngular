@@ -10,37 +10,51 @@ import { errorMessage, successDialog, timeMessage } from 'src/app/functions/aler
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit
+{
   registerForm: FormGroup;
   user:User;
 
-  constructor(private fb: FormBuilder, private authService:AuthServiceService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService:AuthServiceService, private router: Router)
+  {
     this.createForm();
   }
+
   ngOnInit(): void {}
 
-  register(): void {
-    if (this.registerForm.invalid) {
-      return Object.values(this.registerForm.controls).forEach(control => {
+  register(): void
+  {
+    if (this.registerForm.invalid)
+    {
+      return Object.values(this.registerForm.controls).forEach(control =>
+      {
         control.markAsTouched();
       })
-    }else{
+    }
+    else
+    {
       this.setUser();
-      this.authService.register(this.user).subscribe(data =>{
-        timeMessage('Registrando..', 1500).then(() => {
+      this.authService.register(this.user).subscribe(data =>
+        {
+        timeMessage('Registrando..', 1500).then(() =>
+        {
           successDialog('Registro Completado');
           this.authService.login(this.user).subscribe()
+          console.log(data.usuario.id);
+          sessionStorage.setItem('id', data.usuario.id);
+          this.authService.usuario = data;
           this.router.navigate(['/registerDog']);
         })
-      }, error => {
+      }, error =>
+      {
         errorMessage('Ha ocurrido un error')
       })
-      
     }
   }
 
 
-  createForm(): void {
+  createForm(): void
+  {
     this.registerForm = this.fb.group({
       usuario: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -48,28 +62,33 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get usuarioValidate(){
+  get usuarioValidate()
+  {
     return (
       this.registerForm.get('usuario').invalid && this.registerForm.get('usuario').touched
     );
   }
 
 
-  get passwordValidate(){
+  get passwordValidate()
+  {
     return (
       this.registerForm.get('password').invalid && this.registerForm.get('password').touched
     );
   }
 
-  get password2Validate(){
+  get password2Validate()
+  {
     const pass = this.registerForm.get('password').value;
     const pass2 = this.registerForm.get('password2').value;
 
     return pass === pass2 ? false : true;
   }
 
-  setUser():void{
-    this.user = {
+  setUser():void
+  {
+    this.user =
+    {
       usuario: this.registerForm.get('usuario').value,
       password: this.registerForm.get('password').value
     }
