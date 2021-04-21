@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Perro } from 'src/app/models/Perro';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
@@ -12,12 +13,10 @@ export class HomeComponent implements OnInit {
 
   perros: Perro[] = []
 
-  constructor(public auth: AuthServiceService, public perroService: PerroService) { }
+  constructor(public auth: AuthServiceService, public perroService: PerroService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    
     this.perroService.getPerro().subscribe(data => { this.perros = data["data"]; })
-
+    
   }
-
 }

@@ -17,4 +17,10 @@ export class UsuarioService {
   {
     return this.http.put(`${this.apiURL}usuarios/actualizar`, user, {responseType: 'text'})
   }
+
+
+  getUsuario(): Observable<any>
+  {
+    return this.http.get(`${this.apiURL}perros/getperritos`);
+  }
 }

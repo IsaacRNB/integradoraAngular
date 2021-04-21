@@ -40,9 +40,6 @@ export class RegisterComponent implements OnInit
         {
           successDialog('Registro Completado');
           this.authService.login(this.user).subscribe()
-          console.log(data.usuario.id);
-          sessionStorage.setItem('id', data.usuario.id);
-          this.authService.usuario = data;
           this.router.navigate(['/registerDog']);
         })
       }, error =>

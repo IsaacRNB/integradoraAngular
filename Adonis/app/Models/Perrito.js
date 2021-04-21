@@ -4,9 +4,7 @@
 const Model = use('Model')
 
 class Perrito extends Model {
-    due(){
-        this.belongsTo('App/Models/User')
-    }
+    
 }
 
 module.exports = Perrito

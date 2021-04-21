@@ -1,4 +1,3 @@
-import { Perro2 } from './../../models/Perro';
 import { PerroService } from './../../services/perro.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -26,7 +25,7 @@ export class RegisterDogComponent implements OnInit {
   ngOnInit(): void { }
 
   cargarImagen(ngform: NgForm): void {
-    const data: Perro2 =
+    const data: Perro =
     {
       "nombre": ngform.control.value.nombrePerro
     }

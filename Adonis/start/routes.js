@@ -1,6 +1,7 @@
 'use strict'
 const Route = use('Route')
 
+
 //=========================Login y Registro===========================================
 Route.post('/login', 'AuthController.login')
 Route.post('/registrar', 'UserController.crear')
@@ -20,19 +21,22 @@ Route.get('/gettemp', 'TemperaturaController.index')
 //=========================Registro y update de perrito=================================
 Route.group(() => {
     Route.post('/registrarperrito', 'PerritoController.crear')
-    Route.put('/actualizarperrito', 'PerritoController.actualizar')
-    Route.put('/actualizarperrito2', 'PerritoController.actualizar2')
-
     Route.delete('/eliminarperrito/:id', 'PerritoController.delete')
     Route.get('/getperritos', 'PerritoController.getperritos')
+
+    Route.put('/actualizarperrito2', 'PerritoController.actualizar2')
+
+    Route.get('/perros', 'UserController.getUsuarioWithPerro') //seagrego ruta
+
   }).middleware('auth').prefix('perros/')
+
+  Route.get('/getimgperro', 'PerritoController.getimage')
 
 //=========================update y traer usuarios=================================
   Route.group(() => {
   Route.put('/actualizar', 'UserController.actualizar')
   Route.get('/getusuarios', 'UserController.getusuarios')
-  Route.get('/perros', 'UserController.getusuarios')
-
-  Route.get('/perros', 'UserController.getUsuarioWithPerro') //seagrego ruta
-
+  Route.post('/vincular', 'UserController.vincular')
+  Route.get('/getdispensa', 'UserController.getdispensa')
   }).middleware('auth').prefix('usuarios/')
+  

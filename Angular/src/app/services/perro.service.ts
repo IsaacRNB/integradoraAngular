@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { Perro } from '../models/Perro';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +17,9 @@ export class PerroService {
   {
     return this.http.get(`${this.apiURL}perros/getperritos`)
   }
-  
+
   public registrarPerro(data,nombre){
-    return this.http.post(`${this.apiURL}perros/registrarperrito?nombre=${nombre}`, data); // POST  
+    return this.http.post(`${this.apiURL}perros/registrarperrito?nombre=${nombre}`, data); // POST
   }
 
   actualizarPerro(data, nombre):Observable<any>
@@ -31,5 +30,10 @@ export class PerroService {
   getPerro(): Observable<any>
   {
     return this.http.get(`${this.apiURL}perros/getperritos`);
+  }
+
+  getPerroimg(): Observable<any>
+  {
+    return this.http.get(`${this.apiURL}getimgperro`);
   }
 }

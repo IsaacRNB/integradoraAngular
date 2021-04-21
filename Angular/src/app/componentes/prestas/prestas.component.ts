@@ -54,7 +54,8 @@ export class PrestasComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-  
+          this.router.navigate(['/home']);
+
           ngform.resetForm();
         }, error => {
           Swal.fire({
@@ -98,6 +99,7 @@ export class PrestasComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.router.navigate(['/home']);
         ngform.resetForm();
       })
     }

@@ -20,6 +20,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuard } from './componentes/guards/auth.guard';
 import { AuthInterceptorService } from './componentes/interceptors/auth-interceptor.service';
 import { RegisterDogComponent } from './componentes/register-dog/register-dog.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SecurityImagePipe } from './security-image.pipe';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import { RegisterDogComponent } from './componentes/register-dog/register-dog.co
     AguaComponent,
     GraficasComponent,
     PrestasComponent,
-    RegisterDogComponent
+    RegisterDogComponent,
+    SecurityImagePipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import { RegisterDogComponent } from './componentes/register-dog/register-dog.co
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard,
     {provide: HTTP_INTERCEPTORS, 

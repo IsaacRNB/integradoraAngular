@@ -49,20 +49,32 @@
         <div class="card-body shadow">
           <div class="row">
             <div class="col">
-              <h3 style="color: red;">Semana</h3>
-
               <br>
               <div class="container text-center mt-5">
 
+                <ngx-charts-bar-vertical
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="single"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="showLegend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
               </div>
-
+              <button (click)="test()" class="btn"> aceptar</button>
             </div>
               
               <div class="col">
 
               <br>
               <div class="container text-center mt-5" >
-
+                
               </div>
             </div>
           </div>

@@ -1,16 +1,18 @@
 <app-navbar></app-navbar>
 
-<div class="container text-center" style="margin-top: 60px">
-   <h1 class="text-white" >Bienvenido a tu panel de dispensador de croquetas</h1>
+<div class="background text-center">
+
+   <div class="card" style="width: 650px;" *ngFor="let perro of perros">
+      <img class="card-img-top" [src]="'http://127.0.0.1:3333/getimgperro?nombre=' + perro.nombre" style="border-radius: 8px;" width="200em" height="350em" >
+
+
+       <div class class="card-body text-center">
+         <h4 >Bienvenido a tu panel de dispensador de croquetas</h4>
+         <h5>Arriba encontraras las opciones para controlar el dispensador de</h5>
+         <h4 style="text-transform: uppercase; color: red;" [innerHTML]="perro.nombre"></h4>
+       
+       </div>
+
+   </div>
 </div>
 
-<div *ngFor="let perro of perros;">
-   <p class="centrado"> 
-      <img  [innerHTML]="perro.foto" width="800px">
-   </p>
-   <div class="container text-center text-white" style="margin-bottom: 100px;">
-      <h1 >Arriba encontraras las opciones</h1>
-      <h1 >para controlar el  dispensador de <h1 [innerHTML]="perro.nombre"></h1> </h1>
-   </div>
-   
-</div>

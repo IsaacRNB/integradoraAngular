@@ -21,6 +21,7 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   'adonis-mongoose-model/providers/MongooseProvider',
   '@adonisjs/websocket/providers/WsProvider',
+  '@adonisjs/drive/providers/DriveProvider'
 
 ]
 

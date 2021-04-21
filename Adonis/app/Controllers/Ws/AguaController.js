@@ -7,6 +7,7 @@ class AguaController {
   }
 
   onMessage(data){
+    this.socket.broadcastToAll("message", data)
     var accion = data
     console.log(this.socket.id)
     console.log(accion)

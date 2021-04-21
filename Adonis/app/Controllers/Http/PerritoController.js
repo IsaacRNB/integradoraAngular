@@ -1,5 +1,8 @@
 'use strict'
+const db = use('Database')
+const Helpers = use('Helpers')
 const Perrito = use('App/Models/Perrito')
+const Drive = use('Drive')
 class PerritoController {
 //===================================== REGISTRAR PERRITOS =======================================
     async crear({request, response, auth}){
@@ -11,7 +14,7 @@ class PerritoController {
           })
           const nombreF = data['nombre'] + "." + imagen.extname;
 
-          await imagen.move('./public/fotosperritos', {
+          await imagen.move(Helpers.tmpPath('fotosperritos'), {
             name: nombreF,
             overwrite: true
           })
@@ -28,6 +31,7 @@ class PerritoController {
         const perr = new Perrito()
         perr.nombre = data['nombre']
         perr.foto = nombreF
+        perr.path = 'fotosperritos/' + nombreF.toString(),
         perr.due = usuario['id']
         await perr.save()
         return response.created({
@@ -73,7 +77,7 @@ class PerritoController {
              message: "No se han podido actualizar los datos del perrito"
         })
     }
-    //=====================================SELECT PERRITOS =======================================
+    //===================================== SELECT PERRITOS =======================================
     async getperritos({response, auth}){
         const usuario = await auth.getUser()
         const data = usuario.id
@@ -91,7 +95,7 @@ class PerritoController {
             data: perrito
         })
     }
-    //================================================DELETE PERRITO=================================
+    //================================================ DELETE PERRITO =================================
     async delete({ params , response}){
         const id = params.id
         const perro = await Perrito.find(id)
@@ -107,8 +111,7 @@ class PerritoController {
         })
     }
 
-
-
+    //=================================================================================================
     async actualizar2({request,response}){
         const data = request.only(['nombre', 'foto'])
         const posto = new Perrito()
@@ -120,7 +123,10 @@ class PerritoController {
           })
 
           const nombreF = data['nombre'] + "." + imagen.extname;
-          await imagen.move('./public/fotosperritos', {
+          const path = 'fotosperritos/' + nombreF.toString();
+
+
+          await imagen.move(Helpers.tmpPath('fotosperritos'), {
             name: nombreF,
             overwrite: true
           })
@@ -132,9 +138,10 @@ class PerritoController {
                   message: foto.error()
               })
           }
-        
+
         if (await Perrito.query()
-        .update({'nombre': posto.nombre, 'foto': nombreF, 'updated_at': Date()})){
+        
+        .update({'nombre': posto.nombre, 'foto': nombreF, 'path': path, 'updated_at': Date()})){
          return response.status(200).json({
              status: true,
              message: "Los datos del perrito han sido actualizados"
@@ -145,6 +152,25 @@ class PerritoController {
              message: "No se han podido actualizar los datos del perrito"
         })
     }
+    //============================================================================================
+    async getimage({response, request}){
+        try {
+            const {nombre} = request.only(['nombre'])
+            const img = await Perrito.findBy('nombre', nombre)
+            const filePath = img.path
+            const isExist = await Drive.exists(filePath)
+
+            if (isExist) {
+              return response.download(Helpers.tmpPath(filePath));
+            }
+            return response.send({message: 'File does not exist'});
+          } catch (e) {
+              console.log(e)
+            return response.json(e)
+          }
+    }
+
+
 }
 
 module.exports = PerritoController
