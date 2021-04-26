@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Perro } from 'src/app/models/Perro';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import Swal from 'sweetalert2';
+import { errorMessage, successDialog, timeMessage } from 'src/app/functions/alerts';
 
 @Component({
   selector: 'app-register-dog',
@@ -19,7 +20,7 @@ export class RegisterDogComponent implements OnInit {
   constructor(
     private perroService: PerroService,
     private router: Router) {
-    //console.log(sessionStorage.getItem('id'))
+      // console.log(sessionStorage.getItem('id'))
   }
 
   ngOnInit(): void { }
@@ -32,26 +33,22 @@ export class RegisterDogComponent implements OnInit {
     const formData = new FormData();
     if (this.selectedFile) {
       formData.append('foto', this.selectedFile, this.selectedFile.name);
-      //console.log(data)
+
       if (data.nombre != null) {
-        this.perroService.registrarPerro(formData, data.nombre).subscribe(data => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Perro registrado exitosamente',
-            showConfirmButton: false,
-            timer: 1500
+        this.perroService.registrarPerro(formData, data.nombre).subscribe(data => 
+          {
+            timeMessage('Registrando..', 1500).then(() =>
+            {
+              successDialog('Registro Completado');
+              sessionStorage.removeItem('id');
+              localStorage.removeItem('token')
+              this.router.navigate(['/login']);
+            })
+          }, error =>
+          {
+            errorMessage('Solo se permiten imagenes')
           })
-          sessionStorage.removeItem('id');
-          localStorage.removeItem('token')
-          this.router.navigate(['/login']);
-          ngform.resetForm();
-        }, error => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Ocurrio algun error!',
-          })
-        });
+        
       }
     }
     else {

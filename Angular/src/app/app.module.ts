@@ -23,7 +23,8 @@ import { RegisterDogComponent } from './componentes/register-dog/register-dog.co
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SecurityImagePipe } from './security-image.pipe';
-
+import { GraficaCroquetasComponent } from './componentes/grafica-croquetas/grafica-croquetas.component';
+import { RellenarComponent } from './componentes/rellenar/rellenar.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import { SecurityImagePipe } from './security-image.pipe';
     GraficasComponent,
     PrestasComponent,
     RegisterDogComponent,
-    SecurityImagePipe
+    SecurityImagePipe,
+    GraficaCroquetasComponent,
+    RellenarComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+
 import { User } from 'src/app/models/user';
 import { AuthServiceService } from './../../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,12 +6,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { error } from 'protractor';
 import { errorMessage, successDialog, timeMessage } from 'src/app/functions/alerts';
+import { mostrarPrestasAnimation } from 'src/app/animation';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations:[
+    mostrarPrestasAnimation
+  ]
 })
 export class LoginComponent implements OnInit {
 

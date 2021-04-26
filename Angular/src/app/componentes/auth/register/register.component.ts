@@ -4,11 +4,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { errorMessage, successDialog, timeMessage } from 'src/app/functions/alerts';
+import { mostrarPrestasAnimation } from 'src/app/animation';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations:[
+    mostrarPrestasAnimation
+  ]
 })
 export class RegisterComponent implements OnInit
 {

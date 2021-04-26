@@ -7,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { successDialog, timeMessage } from 'src/app/functions/alerts';
+import { entradaPrestasAnimation } from 'src/app/animation';
 
 @Component({
   selector: 'app-prestas',
   templateUrl: './prestas.component.html',
-  styleUrls: ['./prestas.component.css']
+  styleUrls: ['./prestas.component.css'],
+
+  animations:[
+    entradaPrestasAnimation
+  ]
 })
 export class PrestasComponent implements OnInit {
 
@@ -44,24 +50,22 @@ export class PrestasComponent implements OnInit {
     if (this.selectedFile) {
   
       formData.append('foto', this.selectedFile, this.selectedFile.name);
-      console.log(data)
+      // console.log(data)
   
       if (data.nombre != null) {
         this.perroService.actualizarPerro(formData, data.nombre).subscribe(data => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Perro actualizado exitosamente',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.router.navigate(['/home']);
+          timeMessage('Actualizando espere...', 2000).then(() => {
+            successDialog('Mascota actualizado correctamente').then(() => {
+              this.router.navigate(['/home']);
+            });
+          });
 
           ngform.resetForm();
         }, error => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Ocurrio algun error!',
+            text: 'Solo se permiten imagenes',
           })
         });
       }
@@ -80,7 +84,7 @@ export class PrestasComponent implements OnInit {
     if ($event.target.files[0]) {
       // @ts-ignore
       this.selectedFile = $event.target.files[0];
-      console.log(this.selectedFile)
+      // console.log(this.selectedFile)
     }
   }
 
@@ -93,13 +97,11 @@ export class PrestasComponent implements OnInit {
 
     if (data.usuario != null && data.password != null) {
       this.usuarioService.actualizarUsuario(data).subscribe((data: any) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Usuario actualizado exitosamente',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigate(['/home']);
+        timeMessage('Actualizando espere...', 2000).then(() => {
+          successDialog('Usuario actualizado correctamente').then(() => {
+            this.router.navigate(['/home']);
+          });
+        });
         ngform.resetForm();
       })
     }
